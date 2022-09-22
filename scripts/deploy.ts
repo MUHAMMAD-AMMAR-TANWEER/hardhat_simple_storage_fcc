@@ -1,6 +1,6 @@
 //Import
 
-const { ethers, network } = require("hardhat")
+import { ethers, run, network } from "hardhat"
 
 //function
 async function main() {
@@ -29,14 +29,14 @@ async function main() {
     console.log(`The updated values is : ${updatedNumber}`)
 }
 
-async function verify(contractAddress, args) {
+async function verify(contractAddress: string, args: any[]) {
     console.log("Verifying the contract")
     try {
         await run("verify:verify", {
             address: contractAddress,
             constructorArguments: args,
         })
-    } catch (e) {
+    } catch (e : any) {
         if (e.message.toLowerCase().includes("already verified")) {
             console.log("Already verified")
         } else {
